@@ -80,10 +80,10 @@ endfun
 autocmd BufWritePre * call StripTrailingWhitespace()
 
 " Navigator split window
-nmap <Up> <c-w>k
-nmap <Down> <c-w>j
-nmap <Right> <c-w>l
-nmap <Left> <c-w>h
+" nmap <Up> <c-w>k
+" nmap <Down> <c-w>j
+" nmap <Right> <c-w>l
+" nmap <Left> <c-w>h
 
 " Ruby complete
 let g:rubycomplete_buffer_loading = 1
@@ -91,17 +91,17 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 " Save
-nmap <F2> :w<cr>
+" nmap <F2> :w<cr>
 " Save all
-nmap <F3> :wa<cr>
+" nmap <F3> :wa<cr>
 " Close
-nmap <F4> :q<cr>
+" nmap <F4> :q<cr>
 " quicklist prev
-nmap <F6> :cp<cr>
+" nmap <F6> :cp<cr>
 " quicklist next
-nmap <F7> :cn<cr>
+" nmap <F7> :cn<cr>
 " Format all
-nmap <F11> gg=G<C-o>
+" nmap <F11> gg=G<C-o>
 
 " syntastic
 let g:syntastic_check_on_open = 1
@@ -112,7 +112,7 @@ let g:syntastic_loc_list_height = 5
 let g:syntastic_enable_highlighting = 0
 let g:syntastic_mode_map = { 'passive_filetypes': ['scss', 'slim'] }
 let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_javascript_jshint_exec='/usr/local/lib/node_modules/jshint/bin/jshint'
+let g:syntastic_javascript_jshint_exec='/home/fantasylin/Workstation/node-v4.4.4-linux-x64/lib/node_modules/jshint/bin/jshint'
 
 nmap <A-up> :lprev<cr>
 nmap <A-down> :lnext<cr>
@@ -140,6 +140,31 @@ set tabstop=4                "让一个tab等于4个空格
 set background=dark
 set t_Co=256
 
+"""""""""""""""""""""""""我的快捷键位"""""""""""""""""""""""""
+" 全文缩进整理
+nmap <C-f> gg=G<C-O>
+map <F9> :NERDTreeToggle<CR>
+
+" 先Esc再Save or 再退出
+map <F5> :w<Esc><CR>
+imap <F5> <Esc><F5>
+map <F6> :wa<Esc><CR>
+imap <F6> <Esc><F6>
+map <F8> :q<Esc><CR>
+imap <F8> <Esc><F8>
+
+" 插入模式下的光标移动 还有些问题，会跟window快捷键冲突
+inoremap <A-h> <Left>
+inoremap <A-j> <Down>
+inoremap <A-k> <Up>
+inoremap <A-l> <Right>
+
+" 建立文件后快速创建头部注释
+map <C-h> <Insert>/* <Enter> Create by fantasylin on <C-R>=strftime("%c")<CR> <Enter>/ <Esc><C-f>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 let g:tabular_loaded = 1
 
 " airline-vim
@@ -151,7 +176,6 @@ set laststatus=2
 " NERDTree
 let NERDTreeWinPos='right'
 let NERDTreeWinSize=30
-map <F5> :NERDTreeToggle<CR>
 
 
 " neocomplcache
@@ -175,10 +199,10 @@ let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -194,9 +218,9 @@ inoremap <expr><C-l> neocomplcache#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplcache#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+    return neocomplcache#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -236,7 +260,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " Enable heavy omni completion.
 if !exists('g:neocomplcache_force_omni_patterns')
-  let g:neocomplcache_force_omni_patterns = {}
+    let g:neocomplcache_force_omni_patterns = {}
 endif
 let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
